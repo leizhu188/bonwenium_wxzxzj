@@ -13,7 +13,9 @@ class CloseWebDriver{
 
     public static function doClose(RemoteWebDriver $driver)
     {
-        $driver->close();
+        if ( env('BROWSER_CLOSE_END',true) ){
+            $driver->close();
+        }
     }
 
 }

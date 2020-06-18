@@ -148,6 +148,11 @@ class CreateWebDriver{
      */
     private function createNewDriver(DesiredCapabilities $capabilities){
         $this->driver = RemoteWebDriver::create($this->host, $capabilities, $this->timeOut);
+
+        $enterUrl = env('index_url');
+
+        $this->driver->get($enterUrl);
+
         if ($redis = self::redis()){
             $sessionId = $this->driver->getSessionID();
             if (!$sessionId){
